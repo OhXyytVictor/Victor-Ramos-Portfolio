@@ -3,14 +3,13 @@ import { Button } from "@/components/ui/button"
 export default function HeroSection() {
   return (
     <div className="text-center md:text-left mb-16 pt-4">
-      <div className="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/30 text-red-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
-        <span>🎮 Game Programmer & Software Developer</span>
-      </div>
-
-      <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
-        Victor Ramos <br />
-        <span className="text-red-500">Game Programmer & Developer</span>
+      <h1 className="hero-title text-6xl md:text-8xl font-black text-red-500 mb-4 tracking-tight">
+        Victor Ramos
       </h1>
+      
+      <p className="text-xl md:text-2xl font-bold text-white mb-8 tracking-wide">
+        Desenvolvedor de Jogos Digitais & Game Programmer
+      </p>
 
       <div className="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl">
         <p>
@@ -21,7 +20,7 @@ export default function HeroSection() {
         </p>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+      <div className="mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
         <a href="https://wa.me/5511943789274" target="_blank" rel="noreferrer">
           <Button size="lg" className="bg-red-600 hover:bg-red-500 text-white font-bold px-7 py-3 rounded-full transition-all shadow-lg shadow-red-600/30">
             Contato via WhatsApp
