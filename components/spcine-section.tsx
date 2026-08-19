@@ -20,7 +20,7 @@ export default function SpcineSection() {
           </p>
         </div>
         <div className="bg-purple-900/40 border border-purple-500/40 rounded-2xl p-6 text-center min-w-[180px] self-stretch md:self-auto flex flex-col justify-center">
-          <span class="text-4xl font-black text-purple-400">2x</span>
+          <span className="text-4xl font-black text-purple-400">2x</span>
           <span className="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Edições como Jurado</span>
           <span className="text-xs text-purple-300 mt-2 font-bold">SPCine • Futuro Gamer</span>
         </div>
