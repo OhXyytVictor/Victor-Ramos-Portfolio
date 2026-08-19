@@ -1,7 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  overflow-y: auto; /* Permite a rolagem vertical */
-  /* min-height: 200vh; <-- Removido para evitar rolagem extra */
+  overflow-y: auto;
 }
 
 @layer utilities {
