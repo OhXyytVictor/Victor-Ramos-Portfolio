@@ -1,286 +1,392 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-
-  
-  <meta property="og:title" content="Victor Ramos - Portfólio" />
-  <meta property="og:description" content="Conheça meus projetos, experiências e formas de contato. Desenvolvedor Júnior | Unity | Unreal Engine | Jogos Digitais." />
-  <meta property="og:image" content="https://victorramos.netlify.app/Capa.jpg" />
-  <meta property="og:url" content="https://victorramos.netlify.app/" />
-  <meta property="og:type" content="website" />
-  
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Victor Ramos</title>
+    <title>Victor Ramos - Portfólio & Game Developer</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Victor Ramos - Portfólio | Desenvolvedor de Jogos" />
+    <meta property="og:description" content="Portfólio de Victor Ramos - Game Programmer (Unreal Engine & Unity), Jurado SPCine (Futuro Gamer) e Desenvolvedor dos jogos Camp Wars (Steam), HopeLess (itch.io) e Agiota BR Simulator." />
+    <meta property="og:image" content="https://victorramos.netlify.app/capa.jpg" />
+    <meta property="og:url" content="https://victorramos.netlify.app/" />
+    <meta property="og:type" content="website" />
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
         .hero-title {
-            font-family: 'Arial Black', sans-serif;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.04em;
         }
-        .backdrop-blur {
-            backdrop-filter: blur(10px);
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
+
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(239, 68, 68, 0.25);
         }
-        .geometric-shape {
-            filter: blur(40px);
+
+        .badge-red {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
-        .card-hover:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+
+        .badge-steam {
+            background: rgba(23, 26, 33, 0.8);
+            color: #66c0f4;
+            border: 1px solid rgba(102, 192, 244, 0.4);
         }
-        .icon-hover:hover {
-            color: #ef4444;
+
+        .badge-itch {
+            background: rgba(250, 92, 92, 0.15);
+            color: #fa5c5c;
+            border: 1px solid rgba(250, 92, 92, 0.4);
         }
-        @keyframes blink-red {
-            0%, 100% { color: #f87171; }
-            50% { color: #fff; }
+
+        .badge-spcine {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.4);
         }
-        .blink-red {
-            animation: blink-red 0.8s linear 0s 4 alternate;
+
+        .glow-effect {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black min-h-screen flex flex-col relative">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col relative overflow-x-hidden selection:bg-red-500 selection:text-white">
 
-    <div class="absolute inset-0 -z-10 pointer-events-none"></div>
+    <!-- Ambient Glow Background -->
+    <div class="glow-effect -top-20 -left-20"></div>
+    <div class="glow-effect top-1/2 right-0"></div>
 
-    <div class="relative w-full flex items-center justify-between p-6 md:p-8">
-        <div class="flex items-center space-x-8">
-            <span class="text-white font-bold text-xl">Portfolio</span>
-            <a href="#sobre" class="text-white text-opacity-80 hover:text-red-400 transition-colors">Sobre</a>
-        </div>
-        <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex justify-center pointer-events-none select-none">
-            <div id="marquee" class="h-6 text-sm text-red-400 font-semibold transition-opacity duration-500 text-center"></div>
-        </div>
-        <div class="flex space-x-4">
-            <a href="https://github.com/OhXyytVictor" target="_blank" class="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded transition-all duration-300">
-                <i class="fab fa-github text-xl"></i>
+    <!-- Header / Navigation -->
+    <header class="w-full sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/10 px-6 md:px-12 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <span class="bg-red-600 text-white font-extrabold text-lg px-3 py-1 rounded-lg shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform">VR</span>
+                <span class="font-bold text-xl tracking-tight text-white group-hover:text-red-400 transition-colors">Victor Ramos</span>
             </a>
-            <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" class="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded transition-all duration-300">
-                <i class="fab fa-linkedin text-xl"></i>
-            </a>
-            <a href="mailto:jsvramos@live.com" class="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded transition-all duration-300">
-                <i class="fas fa-envelope text-xl"></i>
-            </a>
-        </div>
-    </div>
 
-    <script>
-        const messages = [
-            "Desenvolvedor de jogos digitais",
-            "Experiência com Unreal Engine e Unity",
-            "Aberto a oportunidades como Dev Júnior",
-            "Criando experiências digitais envolventes",
-            "Transformando conceitos em realidade",
-            "Sempre aprendendo e evoluindo",
-            "Jogos, aplicações interativas e mais",
-            "Vamos criar algo incrível juntos!"
-        ];
-        let marqueeIndex = 0;
-        const marqueeDiv = document.getElementById('marquee');
-        function showMarqueeMessage() {
-            marqueeDiv.style.opacity = 0;
-            setTimeout(() => {
-                marqueeDiv.textContent = messages[marqueeIndex];
-                marqueeDiv.style.opacity = 1;
-                marqueeIndex = (marqueeIndex + 1) % messages.length;
-            }, 400);
-        }
-        setInterval(showMarqueeMessage, 4000);
-        document.addEventListener('DOMContentLoaded', showMarqueeMessage);
-    </script>
-
-    <main class="flex-1 flex items-center justify-center px-10 md:px-14">
-        <div class="max-w-4xl w-full">
-            <div id="sobre" class="text-center md:text-left mb-16">
-                <h1 class="hero-title text-4xl md:text-7xl font-black text-red-500 mb-8 tracking-tight">
-                    Victor Ramos
-                </h1>
-                <div class="space-y-6 text-white text-opacity-90 text-lg md:text-xl leading-relaxed text-left w-full">
-                    <p>
-                        Sou um profissional de TI que começou sua jornada solucionando problemas e, hoje, busca criar experiências que surpreendem e cativam. Formado em Programação de Jogos Digitais pela FIAP, desenvolvi habilidades essenciais no suporte técnico, onde a rapidez, a precisão e a resiliência foram fundamentais para meu crescimento.
-                    </p>
-                    <p>
-                        Agora, meu objetivo é transformar conceitos em experiências digitais envolventes. Tenho experiência com Unreal Engine 5.3 e Unity, focando em sistemas de combate, inteligência artificial, interfaces e otimização de performance. Meu TCC, o jogo Hopeless, foi um grande desafio técnico e criativo — e está disponível para jogar: <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" class="underline text-red-400 hover:text-red-600">https://ohxytvictor.itch.io/hopeless</a>.
-                    </p>
-                    <p>
-                        Atualmente, busco oportunidades como Desenvolvedor Júnior, seja no desenvolvimento de jogos, aplicações interativas, ferramentas digitais ou sistemas internos. Meu interesse está em ambientes que incentivam prototipagem ágil, soluções inovadoras e programação analítica.
-                    </p>
-                    <p>
-                        Nesse site, você encontrará alguns projetos que estarei sempre atualizando, além de formas de entrar em contato caso tenha interesse em meus serviços.
-                    </p>
-                </div>
-                <div class="mt-12 flex flex-wrap gap-10 justify-start">
-                    <a href="https://github.com/OhXyytVictor" target="_blank"
-                       class="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 text-lg text-center">
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank"
-                       class="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 text-lg text-center">
-                        LinkedIn
-                    </a>
-                    <a href="https://www.instagram.com/ohshitvictor/?__pwa=1" target="_blank"
-                       class="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 text-lg text-center">
-                        Instagram
-                    </a>
-                    <a href="https://ohxytvictor.itch.io/hopeless" target="_blank"
-                       class="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 text-lg text-center">
-                        itch.io
-                    </a>
-                    <a href="https://wa.me/5511943789274" target="_blank"
-                       class="border border-white text-white hover:bg-white hover:text-black px-8 py-3 rounded-full transition-all duration-300 text-lg text-center">
-                        Contato
-                    </a>
-                </div>
+            <!-- Dynamic Marquee Message -->
+            <div class="hidden lg:flex items-center space-x-2 bg-slate-900/90 border border-white/10 px-4 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <div id="marquee" class="text-xs text-red-400 font-semibold transition-opacity duration-500"></div>
             </div>
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
-                <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 text-center card-hover transition-all duration-300">
-                    <i class="fas fa-code text-5xl text-red-500 mb-4"></i>
-                    <h3 class="text-white font-semibold text-xl mb-2">Desenvolvimento</h3>
-                    <p class="text-white text-opacity-80 text-sm">
-                        Python, JavaScript, TypeScript, Node.js, React, Next.js, Unreal Engine, Unity, APIs, automação e integração de sistemas.
-                    </p>
+
+            <!-- Navigation Links & Socials -->
+            <nav class="flex items-center space-x-6">
+                <a href="#sobre" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden sm:block">Sobre</a>
+                <a href="#jogos" class="text-sm text-slate-300 hover:text-red-400 transition-colors">Jogos</a>
+                <a href="#reconhecimento" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden md:block">SPCine</a>
+                <a href="#skills" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden sm:block">Habilidades</a>
+                
+                <div class="flex items-center space-x-3 border-l border-white/10 pl-4">
+                    <a href="https://github.com/OhXyytVictor" target="_blank" title="GitHub" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" title="LinkedIn" class="text-slate-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-linkedin text-lg"></i>
+                    </a>
+                    <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" title="itch.io" class="text-slate-400 hover:text-red-400 transition-colors">
+                        <i class="fab fa-itch-io text-lg"></i>
+                    </a>
                 </div>
-                <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 text-center card-hover transition-all duration-300">
-                    <i class="fas fa-palette text-5xl text-red-500 mb-4"></i>
-                    <h3 class="text-white font-semibold text-xl mb-2">Design & UI/UX</h3>
-                    <p class="text-white text-opacity-80 text-sm">
-                        Figma, Adobe Creative Suite, interfaces para jogos, prototipagem ágil, experiência do usuário e design responsivo.
-                    </p>
-                </div>
-                <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 text-center card-hover transition-all duration-300">
-                    <i class="fas fa-database text-5xl text-red-500 mb-4"></i>
-                    <h3 class="text-white font-semibold text-xl mb-2">Dados & Suporte</h3>
-                    <p class="text-white text-opacity-80 text-sm">
-                        Big Data, Analytics, visualização de dados, suporte técnico, help desk, troubleshooting, otimização e SEO.
-                    </p>
-                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-6 md:px-12 py-12 space-y-20">
+
+        <!-- Hero / About Section -->
+        <section id="sobre" class="relative pt-6">
+            <div class="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/30 text-red-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+                <i class="fas fa-gamepad text-xs"></i>
+                <span>Game Programmer & Software Developer</span>
             </div>
-            <div class="space-y-8">
-                <h2 id="projetos-destaque" class="text-3xl font-bold text-white mb-8">Projetos em Destaque</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 card-hover transition-all duration-300 group">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-white font-semibold text-xl">Hopeless (Jogo - TCC)</h3>
-                            <a href="https://ohxytvictor.itch.io/hopeless" target="_blank">
-                                <i class="fas fa-external-link-alt text-white text-opacity-60 group-hover:text-red-500 transition-colors icon-hover"></i>
+
+            <h1 class="hero-title text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+                Criando mundos e <br class="hidden sm:block"/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-amber-500">experiências digitais.</span>
+            </h1>
+
+            <div class="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl">
+                <p>
+                    Olá! Sou <strong>Victor Ramos</strong>, formado em <strong>Programação de Jogos Digitais pela FIAP</strong>. Atuo no desenvolvimento de jogos e sistemas de alta performance, especializando-me em <strong>Unreal Engine 5</strong> e <strong>Unity</strong>.
+                </p>
+                <p>
+                    Tenho experiência prática no desenvolvimento de sistemas de combate, inteligência artificial, mecânicas de gameplay, otimização e interfaces. Além de desenvolver meus próprios títulos e colaborar em produções comerciais (como a nova versão de <em>Camp Wars</em> para Steam), atuei como <strong>Jurado no Projeto Futuro Gamer (SPCine)</strong> em 2 edições.
+                </p>
+                <p class="text-slate-400 text-sm">
+                    Busco oportunidades como <strong>Desenvolvedor de Jogos / Dev Júnior</strong>, em ambientes de prototipagem ágil, inovação e resolução de desafios técnicos complexos.
+                </p>
+            </div>
+
+            <!-- Call to Action Buttons -->
+            <div class="mt-8 flex flex-wrap gap-4 items-center">
+                <a href="https://wa.me/5511943789274" target="_blank" 
+                   class="bg-red-600 hover:bg-red-500 text-white font-bold px-7 py-3 rounded-xl transition-all shadow-lg shadow-red-600/30 flex items-center space-x-2">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span>Entrar em Contato</span>
+                </a>
+                <a href="https://store.steampowered.com/app/1850930/Camp_Wars/" target="_blank" 
+                   class="bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold px-6 py-3 rounded-xl transition-all flex items-center space-x-2">
+                    <i class="fab fa-steam text-lg text-blue-400"></i>
+                    <span>Camp Wars na Steam</span>
+                </a>
+                <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" 
+                   class="bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold px-6 py-3 rounded-xl transition-all flex items-center space-x-2">
+                    <i class="fab fa-itch-io text-lg text-red-400"></i>
+                    <span>Meu TCC no itch.io</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Games Section -->
+        <section id="jogos" class="space-y-8">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-white">Jogos & Produções</h2>
+                    <p class="text-slate-400 text-sm mt-1">Projetos comerciais, TCC solo e jogos em produção ativos.</p>
+                </div>
+                <span class="text-xs text-red-400 font-mono font-semibold uppercase tracking-wider hidden sm:block">Portfolio / Games</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- Game 1: Camp Wars -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-red-500/20 transition-all"></div>
+                    <div>
+                        <div class="flex items-start justify-between mb-3">
+                            <span class="badge-steam px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1">
+                                <i class="fab fa-steam"></i>
+                                <span>Steam • Em Produção</span>
+                            </span>
+                            <a href="https://store.steampowered.com/app/1850930/Camp_Wars/" target="_blank" class="text-slate-400 hover:text-red-400 transition-colors">
+                                <i class="fas fa-external-link-alt text-lg"></i>
                             </a>
                         </div>
-                        <p class="text-white text-opacity-80 text-sm mb-4">
-                            Jogo digital desenvolvido como Trabalho de Conclusão de Curso na FIAP. Foco em sistemas de combate, IA, interface e otimização de performance. Disponível no itch.io.
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Camp Wars</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Atuação direta no desenvolvimento da <strong>programação da nova versão do jogo</strong>, atualmente em produção ativa para lançamento na Steam. Foco na implementação de mecânicas de combate, lógica de jogo e otimização.
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Unreal Engine</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Blueprints</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Game Design</span>
-                        </div>
                     </div>
-                    <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 card-hover transition-all duration-300 group">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-white font-semibold text-xl">Ferramenta de IA para Instagram</h3>
-                            <i class="fas fa-external-link-alt text-white text-opacity-60 group-hover:text-red-500 transition-colors icon-hover"></i>
-                        </div>
-                        <p class="text-white text-opacity-80 text-sm mb-4">
-                            Criação de ferramenta baseada em GPT e Python para geração de conteúdo automatizado para Instagram, usando IA generativa.
-                            <p class="text-white text-opacity-80 text-sm mb-4">
-                            (Privado)
-                            </p>
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Python</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">GPT</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">API</span>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 card-hover transition-all duration-300 group">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-white font-semibold text-xl">Dashboard de Dados</h3>
-                            <i class="fas fa-external-link-alt text-white text-opacity-60 group-hover:text-red-500 transition-colors icon-hover"></i>
-                        </div>
-                        <p class="text-white text-opacity-80 text-sm mb-4">
-                            Projeto de visualização de dados interativos, utilizando gráficos dinâmicos e filtros avançados para análise de Big Data.
-                            <p class="text-white text-opacity-80 text-sm mb-4">
-                            (Privado)
-                            </p>
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Data Visualization</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Python</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Analytics</span>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 rounded-lg p-6 card-hover transition-all duration-300 group">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-white font-semibold text-xl">Runovável (GameJam - Global Solution 2)</h3>
-                            <a href="https://ecoenergeek.itch.io/runovavel" target="_blank">
-                                <i class="fas fa-external-link-alt text-white text-opacity-60 group-hover:text-red-500 transition-colors icon-hover"></i>
-                            </a>
-                        </div>
-                        <p class="text-white text-opacity-80 text-sm mb-4">
-                            Jogo desenvolvido em <span class="font-bold text-red-400">Unity</span> para a Game Jam Global Solution 2, com apoio do Pacto Global, Ultragaz, Ultracargo, Tech Mahindra, SAP e Formula-E. O objetivo é promover a conscientização sobre energias renováveis e sustentabilidade de forma divertida e educativa.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Unity</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Game Jam</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Sustentabilidade</span>
-                            <span class="bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30 px-2 py-1 rounded text-xs">Energia Renovável</span>
+                    <div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Programação</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Multiplayer / Ação</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Versão Nova</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Steam</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Game 2: HopeLess -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-red-500/10 rounded-full blur-2xl group-hover:bg-red-500/20 transition-all"></div>
+                    <div>
+                        <div class="flex items-start justify-between mb-3">
+                            <span class="badge-itch px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1">
+                                <i class="fab fa-itch-io"></i>
+                                <span>itch.io • TCC Solo</span>
+                            </span>
+                            <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" class="text-slate-400 hover:text-red-400 transition-colors">
+                                <i class="fas fa-external-link-alt text-lg"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">HopeLess</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Projeto de <strong>Trabalho de Conclusão de Curso (TCC) na FIAP, desenvolvido 100% por mim</strong>. Jogo de sobrevivência e ação focado em sistemas avançados de combate, inteligência artificial dos inimigos, HUD/UI e otimização.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Unreal Engine 5</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Blueprints & IA</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">TCC Solo Dev</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Jogável no itch.io</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 3: Agiota BR Simulator -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+                    <div>
+                        <div class="flex items-start justify-between mb-3">
+                            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1">
+                                <i class="fas fa-hammer"></i>
+                                <span>Em Produção • Exposição em Eventos</span>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Agiota BR Simulator</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Simulador interativo em fase ativa de desenvolvimento. Faço parte da <strong>equipe principal de programação</strong> do jogo, implementando sistemas e mecânicas de gameplay. Projeto em constante destaque e <strong>exposto em eventos presenciais da comunidade gamer</strong>.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Programação de Gameplay</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Simulador</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Exibido em Eventos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 4: Runovável -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden">
+                    <div>
+                        <div class="flex items-start justify-between mb-3">
+                            <span class="badge-itch px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1">
+                                <i class="fas fa-trophy"></i>
+                                <span>Game Jam • Global Solution 2</span>
+                            </span>
+                            <a href="https://ecoenergeek.itch.io/runovavel" target="_blank" class="text-slate-400 hover:text-red-400 transition-colors">
+                                <i class="fas fa-external-link-alt text-lg"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Runovável</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Jogo desenvolvido na Game Jam Global Solution 2 com apoio do <strong>Pacto Global, Ultragaz, Ultracargo, SAP e Formula-E</strong>. Focado na conscientização sobre energias renováveis e sustentabilidade.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Unity Engine</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Game Jam</span>
+                            <span class="badge-red px-2.5 py-0.5 rounded-md text-xs font-medium">Sustentabilidade</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
+
+        <!-- SPCine / Event & Industry Experience Section -->
+        <section id="reconhecimento" class="glass-card rounded-3xl p-8 md:p-10 border border-purple-500/20 bg-gradient-to-r from-purple-950/20 via-slate-900/60 to-slate-950">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="space-y-3 max-w-3xl">
+                    <span class="badge-spcine px-3 py-1 rounded-full text-xs font-bold inline-flex items-center space-x-1">
+                        <i class="fas fa-award"></i>
+                        <span>Reconhecimento & Atuação na Indústria</span>
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-white">Jurado SPCine - Projeto Futuro Gamer</h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Atuei como <strong>Jurado Oficial de Games em 2 edições consecutivas do Projeto Futuro Gamer</strong>, programa promovido pela <strong>SPCine</strong> focado na formação e aceleração de novos desenvolvedores de jogos.
+                    </p>
+                    <p class="text-slate-400 text-sm">
+                        Avaliação técnica de mecânicas de jogos, game design, jogabilidade, originalidade e execução de projetos criados por novos talentos da cena brasileira.
+                    </p>
+                </div>
+                <div class="bg-purple-900/30 border border-purple-500/30 rounded-2xl p-6 text-center min-w-[200px] self-stretch md:self-auto flex flex-col justify-center">
+                    <span class="text-4xl font-black text-purple-400">2x</span>
+                    <span class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Edições como Jurado</span>
+                    <span class="text-xs text-purple-300 mt-2 font-bold">SPCine • Futuro Gamer</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills / Competencies -->
+        <section id="skills" class="space-y-8">
+            <div class="border-b border-white/10 pb-4">
+                <h2 class="text-3xl font-extrabold text-white">Habilidades & Especialidades</h2>
+                <p class="text-slate-400 text-sm mt-1">Conhecimentos técnicos focados no desenvolvimento de jogos e aplicações interativas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mb-4">
+                        <i class="fas fa-gamepad text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-2">Game Development</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Unreal Engine 5 (Blueprints/C++), Unity (C#), IA de Inimigos, Sistemas de Combate, Otimização de Performance e UI/UX para jogos.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mb-4">
+                        <i class="fas fa-code text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-2">Software & Web</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Python, JavaScript, TypeScript, React, Next.js, Node.js, automação com IA generativa (GPT APIs) e integração de sistemas.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mb-4">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-2">Suporte & Analytics</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Troubleshooting técnico, Help Desk avançado, análise de dados, visualização de Big Data, Figma e prototipagem ágil.
+                    </p>
+                </div>
+            </div>
+        </section>
+
     </main>
-    <footer class="w-full p-6 md:p-8 bg-transparent">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-white text-opacity-60 text-sm mb-4 md:mb-0">© 2025 Portfolio. Criado com paixão e dedicação.</p>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-white/10 bg-slate-950 py-8 px-6 md:px-12 mt-12">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-slate-400 text-sm">© 2026 Victor Ramos — Game Programmer & Developer.</p>
             <div class="flex space-x-6">
-                <a href="#projetos-destaque" class="text-white text-opacity-60 hover:text-white text-sm transition-colors">Projetos</a>
+                <a href="https://github.com/OhXyytVictor" target="_blank" class="text-slate-400 hover:text-white text-sm transition-colors">GitHub</a>
+                <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" class="text-slate-400 hover:text-blue-400 text-sm transition-colors">LinkedIn</a>
+                <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" class="text-slate-400 hover:text-red-400 text-sm transition-colors">itch.io</a>
+                <a href="https://wa.me/5511943789274" target="_blank" class="text-slate-400 hover:text-green-400 text-sm transition-colors">WhatsApp</a>
             </div>
         </div>
     </footer>
+
+    <!-- Script for Marquee Messages -->
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        const messages = [
+            "🎮 Game Programmer | Unreal Engine & Unity",
+            "🏆 Jurado SPCine • Projeto Futuro Gamer (2 edições)",
+            "🔥 Desenvolvedor em Camp Wars (Steam)",
+            "🕹️ HopeLess (TCC Solo Dev) jogável no itch.io",
+            "💰 Programador no Agiota BR Simulator",
+            "🚀 Aberto a oportunidades como Game Dev / Dev Júnior!"
+        ];
 
-        document.querySelectorAll('a[href="#projetos-destaque"]').forEach(link => {
-            link.addEventListener('click', function() {
-                const target = document.getElementById('projetos-destaque');
-                if (target) {
-                    target.classList.add('blink-red');
-                    setTimeout(() => target.classList.remove('blink-red'), 2000);
-                }
-            });
-        });
+        let marqueeIndex = 0;
+        const marqueeDiv = document.getElementById('marquee');
 
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function() {
-                console.log('Botão clicado:', this.textContent);
-            });
-        });
+        function showMarqueeMessage() {
+            if (!marqueeDiv) return;
+            marqueeDiv.style.opacity = '0';
+            setTimeout(() => {
+                marqueeDiv.textContent = messages[marqueeIndex];
+                marqueeDiv.style.opacity = '1';
+                marqueeIndex = (marqueeIndex + 1) % messages.length;
+            }, 400);
+        }
 
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.geometric-shape');
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.1);
-                shape.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
+        setInterval(showMarqueeMessage, 3500);
+        document.addEventListener('DOMContentLoaded', showMarqueeMessage);
     </script>
 </body>
 </html>
