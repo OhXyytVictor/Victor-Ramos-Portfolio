@@ -40,11 +40,9 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <div className="space-y-8 my-16">
-      <div className="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">Projetos em Destaque</h2>
-          <p className="text-slate-400 text-sm mt-1">Jogos no Steam, itch.io e produções ativas.</p>
-        </div>
+      <div className="text-center border-b border-white/10 pb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Projetos em Destaque</h2>
+        <p className="text-slate-400 text-sm mt-1">Jogos no Steam, itch.io e produções ativas.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">

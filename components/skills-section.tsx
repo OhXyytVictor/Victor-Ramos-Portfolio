@@ -24,19 +24,26 @@ const skills = [
 
 export default function SkillsSection() {
   return (
-    <div className="grid md:grid-cols-3 gap-6 mb-16">
-      {skills.map((skill, index) => (
-        <Card
-          key={index}
-          className="bg-slate-900/60 backdrop-blur-md border-white/10 hover:border-red-500/40 hover:bg-slate-900/80 transition-all duration-300"
-        >
-          <CardContent className="p-6 text-center">
-            <skill.icon className={`w-12 h-12 ${skill.color} mx-auto mb-4`} />
-            <h3 className="text-white font-bold text-xl mb-2">{skill.title}</h3>
-            <p className="text-slate-300 text-sm leading-relaxed">{skill.description}</p>
-          </CardContent>
-        </Card>
-      ))}
+    <div className="space-y-8 my-16">
+      <div className="text-center border-b border-white/10 pb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Habilidades & Especialidades</h2>
+        <p className="text-slate-400 text-sm mt-1">Conhecimentos técnicos focados no desenvolvimento de jogos e aplicações interativas.</p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        {skills.map((skill, index) => (
+          <Card
+            key={index}
+            className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 rounded-2xl p-6 text-center"
+          >
+            <CardContent className="p-0">
+              <skill.icon className={`w-12 h-12 ${skill.color} mx-auto mb-4`} />
+              <h3 className="text-white font-bold text-xl mb-2">{skill.title}</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">{skill.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   )
 }
