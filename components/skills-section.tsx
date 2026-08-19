@@ -1,33 +1,38 @@
+"use client"
+
+import { useLanguage } from "@/context/LanguageContext"
 import { Card, CardContent } from "@/components/ui/card"
 import { Gamepad2, Code2, Award } from "lucide-react"
 
-const skills = [
-  {
-    icon: Gamepad2,
-    title: "Game Development",
-    description: "Unreal Engine 5 (Blueprints/C++), Unity (C#), IA de Inimigos, Sistemas de Combate, Otimização de Performance e UI/UX.",
-    color: "text-red-500",
-  },
-  {
-    icon: Code2,
-    title: "Desenvolvimento Web & Software",
-    description: "Python, JavaScript, TypeScript, React, Next.js, Node.js, automação com IA generativa (GPT API) e APIs RESTful.",
-    color: "text-red-500",
-  },
-  {
-    icon: Award,
-    title: "Avaliação & Suporte Técnico",
-    description: "Jurado de Games no Projeto Futuro Gamer (SPCine x2), Troubleshooting técnico, Prototipagem Ágil e Analytics.",
-    color: "text-red-500",
-  },
-]
-
 export default function SkillsSection() {
+  const { t } = useLanguage()
+
+  const skills = [
+    {
+      icon: Gamepad2,
+      title: t.skillGameDevTitle,
+      description: t.skillGameDevDesc,
+      color: "text-red-500",
+    },
+    {
+      icon: Code2,
+      title: t.skillSoftwareTitle,
+      description: t.skillSoftwareDesc,
+      color: "text-red-500",
+    },
+    {
+      icon: Award,
+      title: t.skillSupportTitle,
+      description: t.skillSupportDesc,
+      color: "text-red-500",
+    },
+  ]
+
   return (
     <div className="space-y-8 my-16">
       <div className="text-center border-b border-white/10 pb-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Habilidades & Especialidades</h2>
-        <p className="text-slate-400 text-sm mt-1">Conhecimentos técnicos focados no desenvolvimento de jogos e aplicações interativas.</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">{t.skillsTitle}</h2>
+        <p className="text-slate-400 text-sm mt-1">{t.skillsSubtitle}</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">

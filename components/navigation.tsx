@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useLanguage } from "@/context/LanguageContext"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, MessageSquare } from "lucide-react"
 
 export default function Navigation() {
-  const [activeLang, setActiveLang] = useState("pt")
+  const { lang, setLang, t } = useLanguage()
 
   return (
     <nav className="p-4 md:p-6 border-b border-white/10 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
@@ -20,9 +20,9 @@ export default function Navigation() {
         {/* Language Selector Flags */}
         <div className="flex items-center space-x-1.5 bg-black/60 border border-white/15 px-3 py-1.5 rounded-full">
           <button
-            onClick={() => setActiveLang("pt")}
+            onClick={() => setLang("pt")}
             className={`flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-bold transition-all ${
-              activeLang === "pt"
+              lang === "pt"
                 ? "bg-red-500/20 border border-red-500/80 text-white shadow-md shadow-red-500/20"
                 : "opacity-60 hover:opacity-100 text-slate-300"
             }`}
@@ -32,9 +32,9 @@ export default function Navigation() {
             <span className="text-[11px]">PT</span>
           </button>
           <button
-            onClick={() => setActiveLang("en")}
+            onClick={() => setLang("en")}
             className={`flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-bold transition-all ${
-              activeLang === "en"
+              lang === "en"
                 ? "bg-red-500/20 border border-red-500/80 text-white shadow-md shadow-red-500/20"
                 : "opacity-60 hover:opacity-100 text-slate-300"
             }`}
@@ -44,9 +44,9 @@ export default function Navigation() {
             <span className="text-[11px]">EN</span>
           </button>
           <button
-            onClick={() => setActiveLang("es")}
+            onClick={() => setLang("es")}
             className={`flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-bold transition-all ${
-              activeLang === "es"
+              lang === "es"
                 ? "bg-red-500/20 border border-red-500/80 text-white shadow-md shadow-red-500/20"
                 : "opacity-60 hover:opacity-100 text-slate-300"
             }`}
