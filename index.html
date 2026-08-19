@@ -37,32 +37,55 @@
             color: #fca5a5;
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
+
+        .lang-btn {
+            opacity: 0.6;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            border-color: rgba(239, 68, 68, 0.8);
+            background: rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-slate-100 min-h-screen flex flex-col relative selection:bg-red-500 selection:text-white">
 
     <!-- Header / Navigation -->
-    <header class="w-full sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 px-6 md:px-12 py-4">
+    <header class="w-full sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 px-4 md:px-12 py-3">
         <div class="max-w-5xl mx-auto flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3">
                 <span class="bg-red-600 text-white font-extrabold text-lg px-3 py-1 rounded-lg shadow-lg shadow-red-600/30">VR</span>
-                <span class="font-bold text-xl tracking-tight text-white">Victor Ramos</span>
+                <span class="font-bold text-xl tracking-tight text-white hidden sm:inline">Victor Ramos</span>
             </a>
 
-            <!-- Dynamic Marquee Message -->
-            <div class="hidden lg:flex items-center space-x-2 bg-black/40 border border-white/10 px-4 py-1.5 rounded-full">
-                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                <div id="marquee" class="text-xs text-red-400 font-semibold transition-opacity duration-500"></div>
+            <!-- Language Switcher Flags -->
+            <div class="flex items-center space-x-1.5 bg-black/60 border border-white/15 px-3 py-1.5 rounded-full">
+                <button onclick="setLanguage('pt')" id="lang-pt" class="lang-btn active flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-bold" title="Português (Brasil)">
+                    <span class="text-sm">🇧🇷</span>
+                    <span class="text-white text-[11px]">PT</span>
+                </button>
+                <button onclick="setLanguage('en')" id="lang-en" class="lang-btn flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-bold" title="English">
+                    <span class="text-sm">🇺🇸</span>
+                    <span class="text-white text-[11px]">EN</span>
+                </button>
+                <button onclick="setLanguage('es')" id="lang-es" class="lang-btn flex items-center space-x-1 px-2 py-0.5 rounded-full text-xs font-bold" title="Español">
+                    <span class="text-sm">🇪🇸</span>
+                    <span class="text-white text-[11px]">ES</span>
+                </button>
             </div>
 
             <!-- Navigation Links & Socials -->
-            <nav class="flex items-center space-x-6">
-                <a href="#sobre" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden sm:block">Sobre</a>
-                <a href="#jogos" class="text-sm text-slate-300 hover:text-red-400 transition-colors">Projetos</a>
-                <a href="#spcine" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden md:block">SPCine</a>
-                <a href="#skills" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden sm:block">Habilidades</a>
+            <nav class="flex items-center space-x-4 md:space-x-6">
+                <a href="#sobre" id="i18n-navAbout" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden sm:block">Sobre</a>
+                <a href="#jogos" id="i18n-navProjects" class="text-sm text-slate-300 hover:text-red-400 transition-colors">Projetos</a>
+                <a href="#spcine" id="i18n-navSpcine" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden md:block">SPCine</a>
+                <a href="#skills" id="i18n-navSkills" class="text-sm text-slate-300 hover:text-red-400 transition-colors hidden sm:block">Habilidades</a>
                 
-                <div class="flex items-center space-x-3 border-l border-white/10 pl-4">
+                <div class="flex items-center space-x-3 border-l border-white/10 pl-3 md:pl-4">
                     <a href="https://github.com/OhXyytVictor" target="_blank" title="GitHub" class="text-slate-300 hover:text-white transition-colors">
                         <i class="fab fa-github text-lg"></i>
                     </a>
@@ -77,6 +100,14 @@
         </div>
     </header>
 
+    <!-- Marquee Banner -->
+    <div class="w-full bg-black/40 border-b border-white/5 py-2 px-4 flex justify-center">
+        <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            <div id="marquee" class="text-xs md:text-sm text-red-400 font-semibold transition-opacity duration-500 text-center"></div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="flex-1 max-w-5xl w-full mx-auto px-6 md:px-12 py-12 space-y-16">
 
@@ -86,15 +117,15 @@
                 Victor Ramos
             </h1>
             
-            <p class="text-xl md:text-2xl font-bold text-white mb-8 tracking-wide text-center">
+            <p id="i18n-heroSubtitle" class="text-xl md:text-2xl font-bold text-white mb-8 tracking-wide text-center">
                 Desenvolvedor de Jogos Digitais & Game Programmer
             </p>
 
             <div class="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl text-center mx-auto">
-                <p>
+                <p id="i18n-heroBio1">
                     Formado em <strong>Programação de Jogos Digitais pela FIAP</strong>, atuo na criação e programação de sistemas de alta performance para jogos, com foco principal em <strong>Unreal Engine 5</strong> e <strong>Unity</strong>.
                 </p>
-                <p>
+                <p id="i18n-heroBio2">
                     Tenho experiência com desenvolvimento de sistemas de combate, inteligência artificial, mecânicas de gameplay, otimização e interfaces. Além de desenvolver projetos comerciais como a nova versão de <em>Camp Wars</em> para a Steam, atuei como <strong>Jurado no Projeto Futuro Gamer (SPCine)</strong> em 2 edições.
                 </p>
             </div>
@@ -104,17 +135,17 @@
                 <a href="https://wa.me/5511943789274" target="_blank" 
                    class="bg-red-600 hover:bg-red-500 text-white font-bold px-7 py-3 rounded-full transition-all shadow-lg shadow-red-600/30 flex items-center space-x-2">
                     <i class="fab fa-whatsapp text-lg"></i>
-                    <span>Contato via WhatsApp</span>
+                    <span id="i18n-btnWhatsapp">Contato via WhatsApp</span>
                 </a>
                 <a href="https://store.steampowered.com/app/1850930/Camp_Wars/" target="_blank" 
                    class="bg-slate-900 border border-white/20 text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-full transition-all flex items-center space-x-2">
                     <i class="fab fa-steam text-lg"></i>
-                    <span>Camp Wars na Steam</span>
+                    <span id="i18n-btnSteam">Camp Wars na Steam</span>
                 </a>
                 <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" 
                    class="bg-slate-900 border border-white/20 text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-full transition-all flex items-center space-x-2">
                     <i class="fab fa-itch-io text-lg"></i>
-                    <span>HopeLess no itch.io</span>
+                    <span id="i18n-btnItch">HopeLess no itch.io</span>
                 </a>
             </div>
         </section>
@@ -122,8 +153,8 @@
         <!-- Featured Games Section -->
         <section id="jogos" class="space-y-8">
             <div class="text-center border-b border-white/10 pb-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Projetos em Destaque</h2>
-                <p class="text-slate-400 text-sm mt-1">Jogos no Steam, itch.io e produções ativas.</p>
+                <h2 id="i18n-projectsTitle" class="text-3xl md:text-4xl font-bold text-white tracking-tight">Projetos em Destaque</h2>
+                <p id="i18n-projectsSubtitle" class="text-slate-400 text-sm mt-1">Jogos no Steam, itch.io e produções ativas.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
@@ -138,7 +169,7 @@
                             </a>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Camp Wars</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        <p id="i18n-campWarsDesc" class="text-slate-300 text-sm leading-relaxed mb-4">
                             Atuação no desenvolvimento da programação da nova versão do jogo, atualmente em produção ativa para a Steam. Foco em mecânicas de combate, lógica de jogo e otimização.
                         </p>
                     </div>
@@ -162,7 +193,7 @@
                             </a>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">HopeLess</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        <p id="i18n-hopelessDesc" class="text-slate-300 text-sm leading-relaxed mb-4">
                             Jogo de sobrevivência e ação desenvolvido 100% por mim como Trabalho de Conclusão de Curso (TCC) na FIAP. Foco em IA de inimigos, combate fluido e otimização.
                         </p>
                     </div>
@@ -183,7 +214,7 @@
                             <span class="text-xs font-semibold text-red-400 uppercase tracking-wider">Em Produção • Exposição em Eventos</span>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Agiota BR Simulator</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        <p id="i18n-agiotaDesc" class="text-slate-300 text-sm leading-relaxed mb-4">
                             Simulador interativo em desenvolvimento ativo. Faço parte da equipe de programação, desenvolvendo mecânicas principais. Exposto em eventos da comunidade gamer.
                         </p>
                     </div>
@@ -207,7 +238,7 @@
                             </a>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Runovável</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        <p id="i18n-runovavelDesc" class="text-slate-300 text-sm leading-relaxed mb-4">
                             Jogo desenvolvido para a Game Jam Global Solution 2 com apoio do Pacto Global, Ultragaz, Ultracargo, SAP e Formula-E. Focado em conscientização sobre energias renováveis.
                         </p>
                     </div>
@@ -230,19 +261,19 @@
                 <div class="space-y-3 max-w-3xl">
                     <span class="badge-red px-3 py-1 rounded-full text-xs font-semibold inline-flex items-center space-x-1">
                         <i class="fas fa-award"></i>
-                        <span>Reconhecimento & Atuação na Indústria</span>
+                        <span id="i18n-spcineTag">Reconhecimento & Atuação na Indústria</span>
                     </span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Jurado SPCine - Projeto Futuro Gamer</h2>
-                    <p class="text-slate-300 text-base leading-relaxed">
+                    <h2 id="i18n-spcineTitle" class="text-2xl md:text-3xl font-bold text-white tracking-tight">Jurado SPCine - Projeto Futuro Gamer</h2>
+                    <p id="i18n-spcineDesc1" class="text-slate-300 text-base leading-relaxed">
                         Atuei como <strong>Jurado Oficial de Games em 2 edições consecutivas do Projeto Futuro Gamer</strong>, programa promovido pela <strong>SPCine</strong> focado no desenvolvimento e aceleração de novos talentos e estúdios de jogos.
                     </p>
-                    <p class="text-slate-400 text-sm leading-relaxed">
+                    <p id="i18n-spcineDesc2" class="text-slate-400 text-sm leading-relaxed">
                         Avaliação técnica de mecânicas de jogos, game design, jogabilidade, originalidade e execução de projetos apresentados no programa.
                     </p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-xl p-5 text-center min-w-[160px] self-stretch md:self-auto flex flex-col justify-center">
                     <span class="text-4xl font-black text-red-500">2x</span>
-                    <span class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Edições como Jurado</span>
+                    <span id="i18n-spcineCountLabel" class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Edições como Jurado</span>
                     <span class="text-xs text-slate-400 mt-1">SPCine • Futuro Gamer</span>
                 </div>
             </div>
@@ -251,31 +282,31 @@
         <!-- Skills / Competencies -->
         <section id="skills" class="space-y-8">
             <div class="text-center border-b border-white/10 pb-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Habilidades & Especialidades</h2>
-                <p class="text-slate-400 text-sm mt-1">Conhecimentos técnicos focados no desenvolvimento de jogos e aplicações interativas.</p>
+                <h2 id="i18n-skillsTitle" class="text-3xl md:text-4xl font-bold text-white tracking-tight">Habilidades & Especialidades</h2>
+                <p id="i18n-skillsSubtitle" class="text-slate-400 text-sm mt-1">Conhecimentos técnicos focados no desenvolvimento de jogos e aplicações interativas.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass-card rounded-2xl p-6 text-center">
                     <i class="fas fa-gamepad text-4xl text-red-500 mb-4"></i>
-                    <h3 class="text-white font-bold text-xl mb-2">Game Development</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
+                    <h3 id="i18n-skillGameDevTitle" class="text-white font-bold text-xl mb-2">Game Development</h3>
+                    <p id="i18n-skillGameDevDesc" class="text-slate-300 text-sm leading-relaxed">
                         Unreal Engine 5 (Blueprints/C++), Unity (C#), IA de Inimigos, Sistemas de Combate, Otimização de Performance e UI/UX.
                     </p>
                 </div>
 
                 <div class="glass-card rounded-2xl p-6 text-center">
                     <i class="fas fa-code text-4xl text-red-500 mb-4"></i>
-                    <h3 class="text-white font-bold text-xl mb-2">Software & Web</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
+                    <h3 id="i18n-skillSoftwareTitle" class="text-white font-bold text-xl mb-2">Software & Web</h3>
+                    <p id="i18n-skillSoftwareDesc" class="text-slate-300 text-sm leading-relaxed">
                         Python, JavaScript, TypeScript, React, Next.js, Node.js, automação com IA generativa (GPT API) e APIs RESTful.
                     </p>
                 </div>
 
                 <div class="glass-card rounded-2xl p-6 text-center">
                     <i class="fas fa-laptop-code text-4xl text-red-500 mb-4"></i>
-                    <h3 class="text-white font-bold text-xl mb-2">Suporte & Analytics</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
+                    <h3 id="i18n-skillSupportTitle" class="text-white font-bold text-xl mb-2">Suporte & Analytics</h3>
+                    <p id="i18n-skillSupportDesc" class="text-slate-300 text-sm leading-relaxed">
                         Troubleshooting técnico, Help Desk avançado, análise de dados, visualização de Big Data, Figma e prototipagem ágil.
                     </p>
                 </div>
@@ -287,7 +318,7 @@
     <!-- Footer -->
     <footer class="w-full border-t border-white/10 bg-slate-950 py-8 px-6 md:px-12 mt-12">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p class="text-slate-400 text-sm">© 2026 Victor Ramos — Game Programmer & Developer.</p>
+            <p id="i18n-footerText" class="text-slate-400 text-sm">© 2026 Victor Ramos — Game Programmer & Developer.</p>
             <div class="flex space-x-6">
                 <a href="https://github.com/OhXyytVictor" target="_blank" class="text-slate-400 hover:text-white text-sm transition-colors">GitHub</a>
                 <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" class="text-slate-400 hover:text-blue-400 text-sm transition-colors">LinkedIn</a>
@@ -297,22 +328,162 @@
         </div>
     </footer>
 
-    <!-- Script for Marquee Messages -->
+    <!-- Multilingual i18n Translation Script -->
     <script>
-        const messages = [
-            "🎮 Game Programmer | Unreal Engine & Unity",
-            "🏆 Jurado SPCine • Projeto Futuro Gamer (2 edições)",
-            "🔥 Desenvolvedor em Camp Wars (Steam)",
-            "🕹️ HopeLess (TCC Solo Dev) jogável no itch.io",
-            "💰 Programador no Agiota BR Simulator",
-            "🚀 Aberto a oportunidades como Game Dev / Dev Júnior!"
-        ];
+        const translations = {
+            pt: {
+                navAbout: "Sobre",
+                navProjects: "Projetos",
+                navSpcine: "SPCine",
+                navSkills: "Habilidades",
+                heroSubtitle: "Desenvolvedor de Jogos Digitais & Game Programmer",
+                heroBio1: "Formado em <strong>Programação de Jogos Digitais pela FIAP</strong>, atuo na criação e programação de sistemas de alta performance para jogos, com foco em <strong>Unreal Engine 5</strong> e <strong>Unity</strong>.",
+                heroBio2: "Tenho experiência com desenvolvimento de sistemas de combate, inteligência artificial, mecânicas de gameplay, otimização e interfaces. Além de desenvolver projetos comerciais como a nova versão de <em>Camp Wars</em> para a Steam, atuei como <strong>Jurado no Projeto Futuro Gamer (SPCine)</strong> em 2 edições.",
+                btnWhatsapp: "Contato via WhatsApp",
+                btnSteam: "Camp Wars na Steam",
+                btnItch: "HopeLess no itch.io",
+                projectsTitle: "Projetos em Destaque",
+                projectsSubtitle: "Jogos no Steam, itch.io e produções ativas.",
+                campWarsDesc: "Atuação no desenvolvimento da programação da nova versão do jogo, atualmente em produção ativa para a Steam. Foco em mecânicas de combate, lógica de jogo e otimização.",
+                hopelessDesc: "Jogo de sobrevivência e ação desenvolvido 100% por mim como Trabalho de Conclusão de Curso (TCC) na FIAP. Foco em IA de inimigos, combate fluido e otimização.",
+                agiotaDesc: "Simulador interativo em desenvolvimento ativo. Faço parte da equipe de programação, desenvolvendo mecânicas principais. Exposto em eventos da comunidade gamer.",
+                runovavelDesc: "Jogo desenvolvido para a Game Jam Global Solution 2 com apoio do Pacto Global, Ultragaz, Ultracargo, SAP e Formula-E. Focado em conscientização sobre energias renováveis.",
+                spcineTag: "Reconhecimento & Atuação na Indústria",
+                spcineTitle: "Jurado SPCine - Projeto Futuro Gamer",
+                spcineDesc1: "Atuei como <strong>Jurado Oficial de Games em 2 edições consecutivas do Projeto Futuro Gamer</strong>, programa promovido pela <strong>SPCine</strong> focado no desenvolvimento e aceleração de novos talentos e estúdios de jogos.",
+                spcineDesc2: "Avaliação técnica de mecânicas de jogos, game design, jogabilidade, originalidade e execução de projetos apresentados no programa.",
+                spcineCountLabel: "Edições como Jurado",
+                skillsTitle: "Habilidades & Especialidades",
+                skillsSubtitle: "Conhecimentos técnicos focados no desenvolvimento de jogos e aplicações interativas.",
+                skillGameDevTitle: "Game Development",
+                skillGameDevDesc: "Unreal Engine 5 (Blueprints/C++), Unity (C#), IA de Inimigos, Sistemas de Combate, Otimização de Performance e UI/UX.",
+                skillSoftwareTitle: "Software & Web",
+                skillSoftwareDesc: "Python, JavaScript, TypeScript, React, Next.js, Node.js, automação com IA generativa (GPT API) e APIs RESTful.",
+                skillSupportTitle: "Suporte & Analytics",
+                skillSupportDesc: "Troubleshooting técnico, Help Desk avançado, análise de dados, visualização de Big Data, Figma e prototipagem ágil.",
+                footerText: "© 2026 Victor Ramos — Game Programmer & Developer.",
+                marquee: [
+                    "🎮 Game Programmer | Unreal Engine & Unity",
+                    "🏆 Jurado SPCine • Projeto Futuro Gamer (2 edições)",
+                    "🔥 Desenvolvedor em Camp Wars (Steam)",
+                    "🕹️ HopeLess (TCC Solo Dev) jogável no itch.io",
+                    "💰 Programador no Agiota BR Simulator",
+                    "🚀 Aberto a oportunidades como Game Dev / Dev Júnior!"
+                ]
+            },
+            en: {
+                navAbout: "About",
+                navProjects: "Projects",
+                navSpcine: "SPCine",
+                navSkills: "Skills",
+                heroSubtitle: "Digital Game Developer & Game Programmer",
+                heroBio1: "Graduated in <strong>Digital Game Programming from FIAP</strong>, specializing in creating high-performance game systems focused on <strong>Unreal Engine 5</strong> and <strong>Unity</strong>.",
+                heroBio2: "I have experience developing combat systems, artificial intelligence, gameplay mechanics, optimization, and UI. In addition to commercial projects like the new version of <em>Camp Wars</em> on Steam, I served as an official <strong>Jury Member for Projeto Futuro Gamer (SPCine)</strong> in 2 editions.",
+                btnWhatsapp: "Contact via WhatsApp",
+                btnSteam: "Camp Wars on Steam",
+                btnItch: "HopeLess on itch.io",
+                projectsTitle: "Featured Projects",
+                projectsSubtitle: "Games on Steam, itch.io, and active commercial productions.",
+                campWarsDesc: "Programming development for the new version of the game, currently in active production for Steam. Focus on combat mechanics, game logic, and performance optimization.",
+                hopelessDesc: "Action survival game 100% developed by me as a Capstone Project (TCC) at FIAP. Focus on enemy AI, smooth combat systems, and optimization.",
+                agiotaDesc: "Interactive simulator in active development. Part of the core programming team developing main gameplay mechanics. Exhibited at gaming events.",
+                runovavelDesc: "Game developed for the Global Solution 2 Game Jam with support from UN Global Compact, Ultragaz, Ultracargo, SAP, and Formula-E. Focused on renewable energy awareness.",
+                spcineTag: "Industry Recognition & Experience",
+                spcineTitle: "SPCine Jury Member - Futuro Gamer Project",
+                spcineDesc1: "Served as an <strong>Official Game Jury Member in 2 consecutive editions of the Futuro Gamer Project</strong>, an accelerator program organized by <strong>SPCine</strong> for emerging game developers.",
+                spcineDesc2: "Technical evaluation of game mechanics, game design, playability, originality, and project execution.",
+                spcineCountLabel: "Editions as Jury",
+                skillsTitle: "Skills & Specialties",
+                skillsSubtitle: "Technical expertise focused on game development and interactive applications.",
+                skillGameDevTitle: "Game Development",
+                skillGameDevDesc: "Unreal Engine 5 (Blueprints/C++), Unity (C#), Enemy AI, Combat Systems, Performance Optimization, and Game UI/UX.",
+                skillSoftwareTitle: "Software & Web",
+                skillSoftwareDesc: "Python, JavaScript, TypeScript, React, Next.js, Node.js, generative AI automation (GPT API), and RESTful APIs.",
+                skillSupportTitle: "Support & Analytics",
+                skillSupportDesc: "Technical troubleshooting, advanced Help Desk, data analysis, Big Data visualization, Figma, and agile prototyping.",
+                footerText: "© 2026 Victor Ramos — Game Programmer & Developer.",
+                marquee: [
+                    "🎮 Game Programmer | Unreal Engine & Unity",
+                    "🏆 SPCine Jury Member • Futuro Gamer Project (2x)",
+                    "🔥 Game Developer on Camp Wars (Steam)",
+                    "🕹️ HopeLess (Solo TCC) playable on itch.io",
+                    "💰 Programmer on Agiota BR Simulator",
+                    "🚀 Open for Game Dev / Junior Developer roles!"
+                ]
+            },
+            es: {
+                navAbout: "Sobre mí",
+                navProjects: "Proyectos",
+                navSpcine: "SPCine",
+                navSkills: "Habilidades",
+                heroSubtitle: "Desarrollador de Videojuegos & Game Programmer",
+                heroBio1: "Graduado en <strong>Programación de Videojuegos por FIAP</strong>, me especializo en la creación y programación de sistemas de alto rendimiento para juegos en <strong>Unreal Engine 5</strong> y <strong>Unity</strong>.",
+                heroBio2: "Tengo experiencia en desarrollo de sistemas de combate, inteligencia artificial, mecánicas de juego, optimización e interfaces. Además de proyectos comerciales como la nueva versión de <em>Camp Wars</em> para Steam, me desempeñé como <strong>Jurado en el Proyecto Futuro Gamer (SPCine)</strong> en 2 ediciones.",
+                btnWhatsapp: "Contacto por WhatsApp",
+                btnSteam: "Camp Wars en Steam",
+                btnItch: "HopeLess en itch.io",
+                projectsTitle: "Proyectos Destacados",
+                projectsSubtitle: "Juegos en Steam, itch.io y producciones activas.",
+                campWarsDesc: "Programación de la nueva versión del juego, actualmente en producción activa para Steam. Enfoque en mecánicas de combate, lógica de juego y optimización.",
+                hopelessDesc: "Juego de supervivencia y acción desarrollado 100% por mí como Trabajo Final de Grado (TCC) en FIAP. Enfoque en IA de enemigos, combate fluido y optimización.",
+                agiotaDesc: "Simulador interactivo en desarrollo activo. Parte del equipo principal de programación. Expuesto en eventos de la comunidad de videojuegos.",
+                runovavelDesc: "Juego desarrollado para la Game Jam Global Solution 2 con el apoyo del Pacto Global de la ONU, Ultragaz, Ultracargo, SAP y Formula-E.",
+                spcineTag: "Reconocimiento y Experiencia en la Industria",
+                spcineTitle: "Jurado SPCine - Proyecto Futuro Gamer",
+                spcineDesc1: "Me desempeñé como <strong>Jurado Oficial de Videojuegos en 2 ediciones consecutivas del Proyecto Futuro Gamer</strong>, programa promovido por <strong>SPCine</strong>.",
+                spcineDesc2: "Evaluación técnica de mecánicas de juego, diseño de juegos, jugabilidad, originalidad y ejecución de proyectos.",
+                spcineCountLabel: "Ediciones como Jurado",
+                skillsTitle: "Habilidades y Especialidades",
+                skillsSubtitle: "Conocimientos técnicos enfocados en el desarrollo de videojuegos y aplicaciones interactivas.",
+                skillGameDevTitle: "Desarrollo de Juegos",
+                skillGameDevDesc: "Unreal Engine 5 (Blueprints/C++), Unity (C#), IA de Enemigos, Sistemas de Combate, Optimización y UI/UX para juegos.",
+                skillSoftwareTitle: "Software & Web",
+                skillSoftwareDesc: "Python, JavaScript, TypeScript, React, Next.js, Node.js, automatización con IA generativa (GPT API) y APIs RESTful.",
+                skillSupportTitle: "Soporte y Analytics",
+                skillSupportDesc: "Resolución de problemas técnicos, Help Desk avanzado, análisis de datos, visualización de Big Data, Figma y prototipado ágil.",
+                footerText: "© 2026 Victor Ramos — Game Programmer & Developer.",
+                marquee: [
+                    "🎮 Game Programmer | Unreal Engine & Unity",
+                    "🏆 Jurado SPCine • Proyecto Futuro Gamer (2 ediciones)",
+                    "🔥 Desarrollador en Camp Wars (Steam)",
+                    "🕹️ HopeLess (TCC Solo Dev) jugable en itch.io",
+                    "💰 Programador en Agiota BR Simulator",
+                    "🚀 ¡Abierto a oportunidades como Game Dev / Dev Junior!"
+                ]
+            }
+        };
 
+        let currentLang = 'pt';
         let marqueeIndex = 0;
         const marqueeDiv = document.getElementById('marquee');
 
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+
+            // Update active state on flag buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`lang-${lang}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Translate all elements with id starting with i18n-
+            const langData = translations[lang];
+            for (const key in langData) {
+                if (key === 'marquee') continue;
+                const el = document.getElementById(`i18n-${key}`);
+                if (el) {
+                    el.innerHTML = langData[key];
+                }
+            }
+
+            // Reset marquee message for selected language
+            marqueeIndex = 0;
+            showMarqueeMessage();
+        }
+
         function showMarqueeMessage() {
             if (!marqueeDiv) return;
+            const messages = translations[currentLang].marquee;
             marqueeDiv.style.opacity = '0';
             setTimeout(() => {
                 marqueeDiv.textContent = messages[marqueeIndex];
@@ -322,7 +493,9 @@
         }
 
         setInterval(showMarqueeMessage, 3500);
-        document.addEventListener('DOMContentLoaded', showMarqueeMessage);
+        document.addEventListener('DOMContentLoaded', () => {
+            showMarqueeMessage();
+        });
     </script>
 </body>
 </html>
