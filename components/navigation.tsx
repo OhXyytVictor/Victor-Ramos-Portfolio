@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext"
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, MessageSquare } from "lucide-react"
+import { Github, Linkedin, MessageSquare, Phone } from "lucide-react"
 
 export default function Navigation() {
   const { lang, setLang, t } = useLanguage()
@@ -59,19 +59,24 @@ export default function Navigation() {
 
         {/* Social Icons */}
         <div className="flex space-x-2">
-          <a href="https://github.com/OhXyytVictor" target="_blank" rel="noreferrer">
+          <a href="https://github.com/OhXyytVictor" target="_blank" rel="noreferrer" title="GitHub">
             <Button variant="ghost" size="icon" className="text-slate-300 hover:text-white hover:bg-white/10">
               <Github className="w-5 h-5" />
             </Button>
           </a>
-          <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" rel="noreferrer" title="LinkedIn">
             <Button variant="ghost" size="icon" className="text-slate-300 hover:text-blue-400 hover:bg-white/10">
               <Linkedin className="w-5 h-5" />
             </Button>
           </a>
-          <a href="https://wa.me/5511943789274" target="_blank" rel="noreferrer">
+          <a href="https://wa.me/5511918224456" target="_blank" rel="noreferrer" title="WhatsApp: (11) 91822-4456">
             <Button variant="ghost" size="icon" className="text-slate-300 hover:text-green-400 hover:bg-white/10">
               <MessageSquare className="w-5 h-5" />
+            </Button>
+          </a>
+          <a href="tel:+5511943789274" title="Ligações e demais contatos: (11) 94378-9274">
+            <Button variant="ghost" size="icon" className="text-slate-300 hover:text-amber-400 hover:bg-white/10">
+              <Phone className="w-5 h-5" />
             </Button>
           </a>
         </div>

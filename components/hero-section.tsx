@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext"
 import { Button } from "@/components/ui/button"
+import { MessageSquare, Phone } from "lucide-react"
 
 export default function HeroSection() {
   const { t } = useLanguage()
@@ -22,9 +23,20 @@ export default function HeroSection() {
       </div>
 
       <div className="mt-10 flex flex-wrap gap-4 justify-center items-center">
-        <a href="https://wa.me/5511943789274" target="_blank" rel="noreferrer">
-          <Button size="lg" className="bg-red-600 hover:bg-red-500 text-white font-bold px-7 py-3 rounded-full transition-all shadow-lg shadow-red-600/30">
+        <a href="https://wa.me/5511918224456" target="_blank" rel="noreferrer">
+          <Button size="lg" className="bg-red-600 hover:bg-red-500 text-white font-bold px-7 py-3 rounded-full transition-all shadow-lg shadow-red-600/30 flex items-center gap-2">
+            <MessageSquare className="w-5 h-5" />
             {t.btnWhatsapp}
+          </Button>
+        </a>
+        <a href="tel:+5511943789274">
+          <Button
+            size="lg"
+            variant="outline"
+            className="border border-white/20 bg-slate-900/80 text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-full transition-all flex items-center gap-2"
+          >
+            <Phone className="w-4 h-4 text-amber-400" />
+            {t.btnPhone}
           </Button>
         </a>
         <a href="https://store.steampowered.com/app/1850930/Camp_Wars/" target="_blank" rel="noreferrer">
