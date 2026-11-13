@@ -10,14 +10,6 @@ export default function ProjectsSection() {
 
   const projects = [
     {
-      title: "Tycoon de Pesca / Fish Tycoon",
-      subtitle: t.fishTycoonSubtitle,
-      description: t.fishTycoonDesc,
-      technologies: ["Roblox", "Luau", "DataStore", "Tycoon & Rebirth", "Multiplayer"],
-      link: "https://www.roblox.com/pt/games/86985334533764/Tycoon-de-Pesca-Fish-Tycoon",
-      image: "/fish-tycoon.jpg",
-    },
-    {
       title: "Camp Wars",
       subtitle: t.campWarsSubtitle,
       description: t.campWarsDesc,
@@ -45,6 +37,13 @@ export default function ProjectsSection() {
       technologies: ["Unity", "Game Jam", "Sustentabilidade", "Pacto Global"],
       link: "https://ecoenergeek.itch.io/runovavel",
     },
+    {
+      title: "Tycoon de Pesca / Fish Tycoon",
+      subtitle: t.fishTycoonSubtitle,
+      description: t.fishTycoonDesc,
+      technologies: ["Roblox", "Luau", "DataStore", "Tycoon & Rebirth", "Multiplayer"],
+      link: "https://www.roblox.com/pt/games/86985334533764/Tycoon-de-Pesca-Fish-Tycoon",
+    },
   ]
 
   return (
@@ -61,11 +60,6 @@ export default function ProjectsSection() {
             className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 rounded-2xl p-6 group flex flex-col justify-between"
           >
             <CardContent className="p-0">
-              {project.image && (
-                <div className="mb-4 rounded-xl overflow-hidden border border-white/10 aspect-video max-h-48 bg-black/40">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                </div>
-              )}
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <span className="text-xs font-semibold text-red-400 uppercase tracking-wider block mb-1">

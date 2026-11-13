@@ -39,16 +39,15 @@ export default function HeroSection() {
             {t.btnPhone}
           </Button>
         </a>
-        <a href="https://www.roblox.com/pt/games/86985334533764/Tycoon-de-Pesca-Fish-Tycoon" target="_blank" rel="noreferrer">
+        <a href="https://store.steampowered.com/app/1850930/Camp_Wars/" target="_blank" rel="noreferrer">
           <Button
             size="lg"
             variant="outline"
             className="border border-white/20 bg-slate-900/80 text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-full transition-all"
           >
-            {t.btnRoblox}
+            {t.btnSteam}
           </Button>
         </a>
-        <a href="https://store.steampowered.com/app/1850930/Camp_Wars/" target="_blank" rel="noreferrer">
           <Button
             size="lg"
             variant="outline"
