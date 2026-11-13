@@ -48,14 +48,6 @@ export default function HeroSection() {
             {t.btnSteam}
           </Button>
         </a>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border border-white/20 bg-slate-900/80 text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-full transition-all"
-          >
-            {t.btnSteam}
-          </Button>
-        </a>
         <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" rel="noreferrer">
           <Button
             size="lg"
