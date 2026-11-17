@@ -12,7 +12,7 @@ import Footer from "@/components/footer"
 export default function Portfolio() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen relative overflow-auto bg-slate-950 text-slate-100 selection:bg-red-500 selection:text-white">
+      <div className="min-h-screen relative overflow-x-hidden bg-transparent text-slate-100 selection:bg-red-500 selection:text-white">
         {/* Background */}
         <Background />
 

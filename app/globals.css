@@ -3,13 +3,69 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-y: auto;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-orbitron), sans-serif;
+  }
+
+  .font-hud {
+    font-family: var(--font-rajdhani), sans-serif;
+  }
+
+  .font-tech-mono {
+    font-family: var(--font-mono), monospace;
+  }
+
+  .hud-chamfer {
+    clip-path: polygon(
+      14px 0,
+      100% 0,
+      100% calc(100% - 14px),
+      calc(100% - 14px) 100%,
+      0 100%,
+      0 14px
+    );
+  }
+
+  .hud-chamfer-sm {
+    clip-path: polygon(
+      8px 0,
+      100% 0,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      0 100%,
+      0 8px
+    );
+  }
+
+  .hud-panel {
+    background: linear-gradient(145deg, rgba(13, 20, 38, 0.85), rgba(6, 10, 22, 0.92));
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  }
+
+  .hud-panel:hover {
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: inset 0 1px 0 rgba(6, 182, 212, 0.18), 0 0 28px -6px rgba(239, 68, 68, 0.22);
+  }
+
+  .hud-scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
   }
 }
 
