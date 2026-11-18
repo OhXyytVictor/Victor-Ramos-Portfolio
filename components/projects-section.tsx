@@ -1,12 +1,16 @@
 "use client"
 
+import { useRef, useState } from "react"
 import { useLanguage } from "@/context/LanguageContext"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Crosshair } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ExternalLink, Crosshair, ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function ProjectsSection() {
   const { t } = useLanguage()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const projects = [
     {
@@ -43,6 +47,14 @@ export default function ProjectsSection() {
     },
     {
       code: "PRJ // 05",
+      title: "Monkeyco — Demo (5 Minutos)",
+      subtitle: t.monkeycoSubtitle,
+      description: t.monkeycoDesc,
+      technologies: ["Unity", "C#", "Roguelite", "itch.io"],
+      link: "https://ohxytvictor.itch.io/monkeyco-demo",
+    },
+    {
+      code: "PRJ // 06",
       title: "Tycoon de Pesca / Fish Tycoon",
       subtitle: t.fishTycoonSubtitle,
       description: t.fishTycoonDesc,
@@ -51,21 +63,81 @@ export default function ProjectsSection() {
     },
   ]
 
+  const scrollToIndex = (index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const clamped = Math.max(0, Math.min(projects.length - 1, index))
+    const card = container.children[clamped] as HTMLElement | undefined
+    if (card) {
+      container.scrollTo({ left: card.offsetLeft, behavior: "smooth" })
+      setActiveIndex(clamped)
+    }
+  }
+
+  const handleScroll = () => {
+    const container = scrollRef.current
+    if (!container) return
+    const firstCard = container.children[0] as HTMLElement | undefined
+    if (!firstCard) return
+    const step = firstCard.offsetWidth + 24
+    const index = Math.round(container.scrollLeft / step)
+    setActiveIndex(Math.max(0, Math.min(projects.length - 1, index)))
+  }
+
+  const padIndex = (n: number) => String(n + 1).padStart(2, "0")
+
   return (
-    <section className="space-y-8 my-16">
-      <div className="text-center border-b border-cyan-500/20 pb-6 relative">
-        <span className="font-tech-mono text-[11px] tracking-[0.25em] text-cyan-400 uppercase block mb-2">
-          ARCHIVE // MISSION DOSSIERS
-        </span>
-        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide uppercase">
-          {t.projectsTitle}
-        </h2>
-        <p className="text-slate-400 text-sm mt-1.5">{t.projectsSubtitle}</p>
+    <section className="space-y-6 my-16">
+      {/* Header & Carousel Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-cyan-500/20 pb-5">
+        <div className="text-center sm:text-left">
+          <span className="font-tech-mono text-[11px] tracking-[0.25em] text-cyan-400 uppercase block mb-1.5">
+            ARCHIVE // MISSION DOSSIERS ({padIndex(activeIndex)} / {String(projects.length).padStart(2, "0")})
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide uppercase">
+            {t.projectsTitle}
+          </h2>
+          <p className="text-slate-400 text-sm mt-1">{t.projectsSubtitle}</p>
+        </div>
+
+        {/* Navigation Arrows */}
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={() => scrollToIndex(activeIndex - 1)}
+            disabled={activeIndex === 0}
+            aria-label="Projeto anterior"
+            className="hud-chamfer-sm border border-cyan-400/35 bg-slate-950/80 text-cyan-300 hover:bg-cyan-500/15 hover:text-white disabled:opacity-30 transition-all"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={() => scrollToIndex(activeIndex + 1)}
+            disabled={activeIndex >= projects.length - 1}
+            aria-label="Próximo projeto"
+            className="hud-chamfer-sm border border-red-500/45 bg-slate-950/80 text-red-300 hover:bg-red-500/20 hover:text-white disabled:opacity-30 transition-all"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </Button>
+        </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-7">
+      {/* Horizontal Carousel Track */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      >
         {projects.map((project, index) => (
-          <div key={index} className="relative group">
+          <div
+            key={index}
+            className="relative group flex-shrink-0 w-[88%] sm:w-[75%] md:w-[calc(50%-12px)] snap-start"
+          >
             {/* Tactical hover corner accents */}
             <span className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-400/0 group-hover:border-cyan-400/90 transition-all duration-300 z-10 pointer-events-none" />
             <span className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-red-500/0 group-hover:border-red-500/90 transition-all duration-300 z-10 pointer-events-none" />
@@ -116,6 +188,23 @@ export default function ProjectsSection() {
               </CardContent>
             </Card>
           </div>
+        ))}
+      </div>
+
+      {/* Carousel Indicators */}
+      <div className="flex justify-center items-center gap-2 pt-1">
+        {projects.map((project, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => scrollToIndex(index)}
+            aria-label={`Ir para ${project.title}`}
+            className={`h-1.5 transition-all duration-300 ${
+              activeIndex === index
+                ? "w-8 bg-gradient-to-r from-red-500 to-cyan-400"
+                : "w-2 bg-white/20 hover:bg-white/45"
+            }`}
+          />
         ))}
       </div>
     </section>
