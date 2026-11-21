@@ -57,6 +57,22 @@ export default function ProjectsSection() {
     },
     {
       code: "PRJ // 05",
+      title: "Bananarquia",
+      subtitle: t.bananarquiaSubtitle,
+      description: t.bananarquiaDesc,
+      technologies: ["Unity", "C#", "WebGL", "2D / Estratégia"],
+      link: "https://ohxytvictor.itch.io/bananarquia",
+    },
+    {
+      code: "PRJ // 06",
+      title: "Pagando Mico",
+      subtitle: t.pagandoMicoSubtitle,
+      description: t.pagandoMicoDesc,
+      technologies: ["Unity", "C#", "WebGL", "Endless Runner"],
+      link: "https://ohxytvictor.itch.io/pagando-mico",
+    },
+    {
+      code: "PRJ // 07",
       title: "Monkeyco — Demo (5 Minutos)",
       subtitle: t.monkeycoSubtitle,
       description: t.monkeycoDesc,
@@ -64,7 +80,7 @@ export default function ProjectsSection() {
       link: "https://ohxytvictor.itch.io/monkeyco-demo",
     },
     {
-      code: "PRJ // 06",
+      code: "PRJ // 08",
       title: "Tycoon de Pesca / Fish Tycoon",
       subtitle: t.fishTycoonSubtitle,
       description: t.fishTycoonDesc,
