@@ -17,7 +17,7 @@ export default function Footer() {
           <a href="https://www.linkedin.com/in/victorramosbraga" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">
             LinkedIn
           </a>
-          <a href="https://ohxytvictor.itch.io/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-red-400 transition-colors">
+          <a href="https://simiandivision.itch.io/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-red-400 transition-colors">
             itch.io
           </a>
           <a href="https://wa.me/5511918224456" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-emerald-400 transition-colors">

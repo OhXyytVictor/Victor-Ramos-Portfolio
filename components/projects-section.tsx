@@ -37,7 +37,7 @@ export default function ProjectsSection() {
       subtitle: t.hopelessSubtitle,
       description: t.hopelessDesc,
       technologies: ["Unreal Engine 5", "Blueprints & IA", "Solo Dev", "FIAP"],
-      link: "https://ohxytvictor.itch.io/hopeless",
+      link: "https://simiandivision.itch.io/hopeless",
     },
     {
       code: "PRJ // 03",
@@ -61,7 +61,7 @@ export default function ProjectsSection() {
       subtitle: t.bananarquiaSubtitle,
       description: t.bananarquiaDesc,
       technologies: ["Unity", "C#", "WebGL", "2D / Estratégia"],
-      link: "https://ohxytvictor.itch.io/bananarquia",
+      link: "https://simiandivision.itch.io/bananarquia",
     },
     {
       code: "PRJ // 06",
@@ -69,7 +69,7 @@ export default function ProjectsSection() {
       subtitle: t.pagandoMicoSubtitle,
       description: t.pagandoMicoDesc,
       technologies: ["Unity", "C#", "WebGL", "Endless Runner"],
-      link: "https://ohxytvictor.itch.io/pagando-mico",
+      link: "https://simiandivision.itch.io/pagando-mico",
     },
     {
       code: "PRJ // 07",
@@ -77,7 +77,7 @@ export default function ProjectsSection() {
       subtitle: t.monkeycoSubtitle,
       description: t.monkeycoDesc,
       technologies: ["Unity", "C#", "Roguelite", "itch.io"],
-      link: "https://ohxytvictor.itch.io/monkeyco-demo",
+      link: "https://simiandivision.itch.io/monkeyco-demo",
     },
     {
       code: "PRJ // 08",

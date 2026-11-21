@@ -78,7 +78,7 @@ export default function HeroSection() {
           </Button>
         </a>
 
-        <a href="https://ohxytvictor.itch.io/hopeless" target="_blank" rel="noreferrer">
+        <a href="https://simiandivision.itch.io/hopeless" target="_blank" rel="noreferrer">
           <Button
             size="lg"
             variant="outline"
